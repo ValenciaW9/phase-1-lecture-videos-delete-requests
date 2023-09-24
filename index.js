@@ -1,3 +1,4 @@
+import submitData from './index';
 function submitData(name, email) {
   return fetch('http://localhost:3000/users', {
     method: 'POST', // Add the method property to specify it as a POST request
