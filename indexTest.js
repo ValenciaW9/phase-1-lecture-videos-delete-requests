@@ -34,6 +34,7 @@ describe("submitData()", () => {
     let email = "steve@steve.com";
 
     await submitData(name, email);
+
     chai.expect(global.fetch, "A fetch to the API was not found").to.have.been.called.with('http://localhost:3000/users');
     chai.expect(global.fetch).to.have.been.called.exactly(1);
     chai.expect(headers['content-type'][0]).to.equal('application/json');

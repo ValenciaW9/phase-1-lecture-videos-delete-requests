@@ -1,4 +1,4 @@
-export async function submitData(name, email) {
+function submitData(name, email) {
   const formData = {
     name: name,
     email: email,
@@ -21,3 +21,7 @@ export async function submitData(name, email) {
       // Handle and append the error message to the DOM here
     });
 }
+
+module.exports = {
+  submitData
+};
