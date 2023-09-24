@@ -1,32 +1,29 @@
-export async function submitData(name, email) {
-  const userData = {
+function submitData(name, email) {
+  const formData = {
     name: name,
-    email: email
+    email: email,
   };
 
-  const jsonData = JSON.stringify(userData);
-
-  const headers = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-  };
-
-  try {
-    const response = await fetch('http://localhost:3000/users', {
-      method: 'POST',
-      headers: headers,
-      body: jsonData
+  return fetch('http://localhost:3000/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  })
+    .then(response => {
+      if (!response.ok) {
+        // If the response is not OK, throw an error
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      const id = data.id;
+      // Append the ID to the DOM here
+    })
+    .catch(error => {
+      // Handle and append the error message to the DOM here
     });
-
-    const data = await response.json();
-
-    const id = data.id;
-
-    // Append the id to the DOM
-
-  } catch (error) {
-    const errorMessage = error.message;
-
-    // Append the errorMessage to the DOM
-  }
 }
