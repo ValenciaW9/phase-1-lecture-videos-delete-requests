@@ -1,4 +1,3 @@
-import submitData from '../path/to/submitData';
 function submitData(name, email) {
   return fetch('http://localhost:3000/users', {
     headers: {
@@ -20,4 +19,5 @@ function submitData(name, email) {
     document.body.innerHTML += `<p>Error: ${error.message}</p>`;
   });
 }
-   export default submitData;
+
+export default submitData;
