@@ -1,22 +1,23 @@
-const chai = require( 'chai' )
-global.expect = chai.expect
-const fs = require( 'fs' )
-const jsdom = require( 'mocha-jsdom' )
-const path = require( 'path' )
-const babel = require( 'babel-core' );
+function submitData(name, email) {
+  const formData = {
+    name: name,
+    email: email,
+  };
 
-const html = fs.readFileSync( path.resolve( __dirname, '..', 'index.html' ), 'utf-8' )
-
-const babelResult = babel.transformFileSync(
-  path.resolve( __dirname, '..', 'index.js' ), {
-    presets: [ 'env' ]
-  }
-);
-
-const src = babelResult.code
-
-jsdom( {
-  html,
-  src,
-  url: "http://localhost"
-} );
+  return fetch('http://localhost:3000/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  })
+    .then(response => response.json())
+    .then(data => {
+      const id = data.id;
+      // Append the ID to the DOM here
+    })
+    .catch(error => {
+      // Handle and append the error message to the DOM here
+    });
+}
