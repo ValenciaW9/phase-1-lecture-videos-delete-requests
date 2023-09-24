@@ -1,40 +1,58 @@
 function submitData(name, email) {
-  const userData = {
+  const formData = {
     name: name,
-    email: email
-  };
-
-  const jsonData = JSON.stringify(userData);
-
-  const headers = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
+    email: email,
   };
 
   return fetch('http://localhost:3000/users', {
     method: 'POST',
-    headers: headers,
-    body: jsonData
-  })
-  .then(response => {
-    // Handle the response
-  })
-  .then(data => {
-    // Access the converted object
-  })
-  .then(data => {
-    const id = data.id;
-    // Append the id to the DOM
-  })
-  .catch(error => {
-    // Handle the error
-  })
-  .catch(error => {
-    const errorMessage = error.message;
-    // Append the errorMessage to the DOM
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify(formData),
   });
 }
+function submitData(name, email) {
+  const formData = {
+    name: name,
+    email: email,
+  };
 
-module.exports = {
-  submitData
-};
+  return fetch('http://localhost:3000/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  })
+    .then(response => response.json())
+    .then(data => {
+      const id = data.id;
+      // Append the ID to the DOM here
+    });
+}
+function submitData(name, email) {
+  const formData = {
+    name: name,
+    email: email,
+  };
+
+  return fetch('http://localhost:3000/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  })
+    .then(response => response.json())
+    .then(data => {
+      const id = data.id;
+      // Append the ID to the DOM here
+    })
+    .catch(error => {
+      // Handle and append the error message to the DOM here
+    });
+}
