@@ -34,3 +34,7 @@ function submitData(name, email) {
     // Append the errorMessage to the DOM
   });
 }
+
+module.exports = {
+  submitData
+};
