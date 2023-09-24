@@ -1,4 +1,4 @@
-function submitData(name, email) {
+export async function submitData(name, email) {
   const formData = {
     name: name,
     email: email,
@@ -12,13 +12,7 @@ function submitData(name, email) {
     },
     body: JSON.stringify(formData),
   })
-    .then(response => {
-      if (!response.ok) {
-        // If the response is not OK, throw an error
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
       const id = data.id;
       // Append the ID to the DOM here
